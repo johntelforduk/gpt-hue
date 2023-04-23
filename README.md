@@ -1,6 +1,8 @@
 # GPT Hue
 This program creates an [OpenAI](https://openai.com/) [GPT](https://en.wikipedia.org/wiki/Generative_pre-trained_transformer) powered chatbot which gives responses which control Philips Hue lights using the [Hue API](https://github.com/studioimaginaire/phue). It is an experiment to see whether generative AI has the potential to make interacting with smart home devices easier.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/sAYGKsNVn6Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 ### Installation
 ```commandline
 pip install phue
