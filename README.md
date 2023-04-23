@@ -12,6 +12,7 @@ pip install openai
 Before first run of program,
 1. Edit `BRIDGE_IP` to be the actual IP address of the Hue Hub on your home network. You can find this out using the Hue app on your phone.
 2. The program requires an `openai_key.txt` file containing your [OpenAI API key](https://platform.openai.com/account/api-keys).
+3. Finally, run the program with `python gpt_hue.py`
 
 ### The chatbot's mission
 At the start of the conversation, the GPT chatbot is asked to control some Hue lights using a defined API. The chatbot is also told a list of available lights (this list is obtained automatically using the Hue API). The chatbot is also given some additional information about the user's preferences - for example that it is a good idea to turn off lights in the Living Room before watching TV.
