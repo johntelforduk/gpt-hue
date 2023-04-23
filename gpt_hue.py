@@ -78,6 +78,7 @@ class Lights:
 
             self.lights[group_name] = bridge_state['groups'][group_id]['lights']
 
+        # Remove individual lights that have names that are substrings of groups.
         for each_light in remove_later:
             del self.lights[each_light]
 
@@ -86,6 +87,7 @@ class Lights:
             print('Light not found.')
             return
 
+        # Turn on all the lights in the list.
         for light_id in self.lights[name]:
             self.bridge.set_light(int(light_id), 'on', on)
 
@@ -95,21 +97,25 @@ class Lights:
             print('Turned off ' + name)
 
     def describe_lights(self) -> str:
+        """
+        Generate a description of the lights in the house, suitable for telling the chatbot about.
+        """
         description = '''I have lights with the following names,'''
         for name in self.lights:
             description += f'\n\t{name}'
         return description
 
     def interpret_response(self, response: str):
+        """Interpret the response from the chatbot. If it contains the word 'PUT', it means that the chatbot wants to
+        do a Hue API invocation. If that's the case, parse out the information in the PUT command, and
+        turn lights on or off accordingly.
+        """
         if 'PUT' in response:
             api_command = response.split('PUT')
             api_parts = api_command[1].split('/')
-            # print('response: ' + str(api_parts))
             light_name = api_parts[2]
             state = 'true' in api_parts[3]
 
-            # print('light_name: ' + light_name)
-            # print('state: ' + str(state))
             self.turn_on_or_off(light_name, state)
 
 
@@ -117,6 +123,7 @@ my_lights = Lights(BRIDGE_IP)
 
 openai.api_key = open('openai_key.txt', 'r').read().strip('\n')
 chatgpt = Persona('ChatGPT')
+
 chatgpt.give_mission(mission='''Hello.
 I would like you to control the Hue light-bulbs in my house using API calls.
 I will use natural language to ask you to do something with my Hue bulbs, and you should say the Hue API commands 
