@@ -36,10 +36,15 @@ BRIDGE_IP=<IP address of your Hue Hub>
 ```
 
 ### Install & run
+To install the packages one-by-one,
 ```commandline
 pip install python-dotenv
 pip install phue
 pip install openai
+```
+Alternatively, use this command,
+```commandline
+pip install -r requirements.txt
 ```
 Before the first run of the program, press the button on your Hue bridge (this is needed on the first run only).
 
